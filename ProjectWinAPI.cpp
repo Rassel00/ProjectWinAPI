@@ -11,6 +11,12 @@ ATOM                MyRegisterClass(HINSTANCE hInstance, LPCWSTR szWindowClass);
 BOOL                InitInstance(HINSTANCE, int, LPCWSTR szWindowClass, LPCWSTR szTitl);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 
+// 참조 : tipssoft
+// 접두어			추가 접두어  
+// g_ : 전역 변수		h_ : 핸들 변수
+// m_ : 멤버 변수		p_ : 포인터 변수
+// a_ : 매개 변수		r_ : 참조 변수
+
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,
 	_In_ LPWSTR    lpCmdLine,
