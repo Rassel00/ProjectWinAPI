@@ -30,7 +30,7 @@
     <ClInclude Include="pch.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="BitmapGenerator.h">
+    <ClInclude Include="BitmapManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -41,7 +41,7 @@
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="BitmapGenerator.cpp">
+    <ClCompile Include="BitmapManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

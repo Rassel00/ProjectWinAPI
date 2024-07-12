@@ -6,6 +6,7 @@
 #include "ProjectWinAPI.h"
 
 
+
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance, LPCWSTR szWindowClass);
 BOOL                InitInstance(HINSTANCE, int, LPCWSTR szWindowClass, LPCWSTR szTitl);
@@ -77,7 +78,17 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow, LPCWSTR szWindowClass, LPCW
 		return FALSE;
 	}
 
+	BitmapManager bm;
+
+
+
 	ShowWindow(hWnd, nCmdShow);
+
+	HDC h_dc = GetDC(hWnd);
+	HBITMAP h_bitmap = CreateBitmap(BMP_WIDTH, BMP_HEIGHT, 1, 32, NULL);
+	bm.DrawRect(h_bitmap, 50, 50, 220, 150);
+	DeleteObject(h_bitmap);
+
 	UpdateWindow(hWnd);
 
 	return TRUE;
