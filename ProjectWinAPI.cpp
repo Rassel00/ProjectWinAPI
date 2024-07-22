@@ -78,9 +78,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow, LPCWSTR szWindowClass, LPCW
 		return FALSE;
 	}
 
-
 	ShowWindow(hWnd, nCmdShow);
-
+	// Draw
 	UpdateWindow(hWnd);
 
 	return TRUE;
@@ -90,12 +89,24 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
 	{
+	case WM_LBUTTONDOWN:
+	{
+		HDC h_dc = GetDC(hWnd);
+		int x = LOWORD(lParam);
+		int y = HIWORD(lParam);
+		int width = 300;
+		int height = 300;
+		Rectangle(h_dc, x - width * 0.5f, y - width * 0.5f, x + width * 0.5f, y + width * 0.5f);
+		ReleaseDC(hWnd, h_dc);
+		break;
+	}
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
 	}
+
 	return 0;
 }
 
