@@ -80,14 +80,19 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow, LPCWSTR szWindowClass, LPCW
 
 	BitmapManager bm;
 
-
-
 	ShowWindow(hWnd, nCmdShow);
 
 	HDC h_dc = GetDC(hWnd);
+	HDC memDC = CreateCompatibleDC(h_dc);
 	HBITMAP h_bitmap = CreateBitmap(BMP_WIDTH, BMP_HEIGHT, 1, 32, NULL);
+
+	SelectObject(memDC, h_bitmap);
 	bm.DrawRect(h_bitmap, 50, 50, 220, 150);
+	BitBlt(h_dc, 0, 0, BMP_WIDTH, BMP_HEIGHT, memDC, 0, 0, SRCCOPY);
+
+	DeleteDC(memDC);
 	DeleteObject(h_bitmap);
+	ReleaseDC(hWnd, h_dc);
 
 	UpdateWindow(hWnd);
 
