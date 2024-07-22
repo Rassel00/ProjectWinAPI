@@ -1,6 +1,21 @@
 #include "pch.h"
 #include "BitmapManager.h"
 
+void BitmapManager::DrawBitmap(HWND hWnd)
+{
+	HDC h_dc = GetDC(hWnd);
+	HDC memDC = CreateCompatibleDC(h_dc);
+	HBITMAP h_bitmap = CreateBitmap(BMP_WIDTH, BMP_HEIGHT, 1, 32, NULL);
+
+	SelectObject(memDC, h_bitmap);
+	DrawRect(h_bitmap, 50, 50, 220, 150);
+	BitBlt(h_dc, 0, 0, BMP_WIDTH, BMP_HEIGHT, memDC, 0, 0, SRCCOPY);
+
+	DeleteDC(memDC);
+	DeleteObject(h_bitmap);
+	ReleaseDC(hWnd, h_dc);
+}
+
 void BitmapManager::DrawRect(HBITMAP ah_bitmap, int a_sx, int a_sy, int a_ex, int a_ey)
 {
 	unsigned int* p = new unsigned int[BMP_WIDTH * BMP_HEIGHT];
