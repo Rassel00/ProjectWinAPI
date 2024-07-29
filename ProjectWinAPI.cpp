@@ -89,6 +89,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
 	{
+	case WM_CLOSE:
+	{
+		if (MessageBox(hWnd, L"Exit?", L"Exit!!!", MB_OKCANCEL) == IDOK)
+		{
+			return DefWindowProc(hWnd, message, wParam, lParam);
+		}
+
+		break;
+	}
 	case WM_LBUTTONDOWN:
 	{
 		HDC h_dc = GetDC(hWnd);

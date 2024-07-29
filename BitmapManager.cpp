@@ -5,7 +5,7 @@ void BitmapManager::DrawBitmap(HWND hWnd)
 {
 	HDC h_dc = GetDC(hWnd);
 	HDC memDC = CreateCompatibleDC(h_dc);
-	HBITMAP h_bitmap = CreateBitmap(BMP_WIDTH, BMP_HEIGHT, 1, 32, NULL);
+	HBITMAP h_bitmap = CreateCompatibleBitmap(h_dc, BMP_WIDTH, BMP_HEIGHT);
 
 	SelectObject(memDC, h_bitmap);
 	DrawRect(h_bitmap, 50, 50, 220, 150);
@@ -38,7 +38,7 @@ void BitmapManager::DrawRect(HBITMAP ah_bitmap, int a_sx, int a_sy, int a_ex, in
 	}
 
 	p_pos = p + (size_t)a_sy * BMP_WIDTH + a_sx;
-	for (i = 0; i < a_ey - a_sy; ++i) 
+	for (i = 0; i < a_ey - a_sy; ++i)
 	{
 		*p_pos = 0x00FFFF00;
 		p_pos += BMP_WIDTH;
